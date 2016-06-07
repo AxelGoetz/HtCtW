@@ -19,25 +19,47 @@ def getSpeed(request):
 
 
 def parseDate(dateString):
+    """
+    Parsing a data string (can return none)
+    """
     if dateString == '':
         return None
     return datetime.strptime(
-        "Tue, 22 Nov 2011 06:00:00 GMT", "%a, %d %b %Y %H:%M:%S %Z")
+        dateString, "%a, %d %b %Y %H:%M:%S %Z")
 
 
 def addStation(request):
-    print request.form
-    station = Station(request.form['latitude'], request.form['longitude'])
-    db.session.add(station)
-    db.session.commit()
+    """
+    Adds a station to the database if the server
+    receives a post request with the appropriary
+    variables:
+    latitude (float), longitude (float)
+    Returns json object with result: success or failure
+    """
+    keys = request.form.keys()
+    if 'latitude' in keys and 'longitude' in keys:
+        station = Station(request.form['latitude'], request.form['longitude'])
+        db.session.add(station)
+        db.session.commit()
+        return jsonify({'result': 'success'})
+    return jsonify({'result': 'failure'})
 
 
 def addRecording(request, station_id):
-    speed = getSpeed(request)
-    recording = Recording(station_id, parseDate(request.form['datetime']), speed)
-    db.session.add(recording)
-    db.session.commit()
-
+    """
+    Adds a recording for a particular station
+    when the server receives a post request with
+    speed (int), datetime (Datetime)
+    Returns json object with result: success or failure
+    """
+    keys = request.form.keys()
+    if 'datetime' in keys and 'speed' in keys:
+        speed = getSpeed(request)
+        recording = Recording(station_id, parseDate(request.form['datetime']), speed)
+        db.session.add(recording)
+        db.session.commit()
+        return jsonify({'result': 'success'})
+    return jsonify({'result': 'failure'})
 
 @app.route('/')
 def root():
@@ -47,7 +69,7 @@ def root():
 @app.route('/stations', methods=['GET', 'POST'])
 def stations():
     if request.method == 'POST':
-        addStation(request)
+        return addStation(request)
 
     records = db.session.query(Station)
 
@@ -72,7 +94,7 @@ def recordings():
 @app.route('/stations/<int:station_id>', methods=['GET', 'POST'])
 def getRecordingsForStation(station_id):
     if request.method == 'POST':
-        addRecording(request, station_id)
+        return addRecording(request, station_id)
 
     records = db.session.query(Recording).filter(
         Recording.station == station_id)
