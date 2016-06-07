@@ -63,7 +63,7 @@ def addRecording(request, station_id):
 
 @app.route('/')
 def root():
-    return render_template('stations.html', stations=stations)
+    return render_template('stations.html')
 
 
 @app.route('/stations', methods=['GET', 'POST'])
@@ -105,6 +105,11 @@ def getRecordingsForStation(station_id):
 
     return jsonify(result=map(extract_dict, records))
 
+
+@app.route('/visualisation/<int:station_id>', methods=['GET'])
+def visualisation(station_id):
+    return render_template(
+        'visualisation.html', station_id=station_id)
 
 if __name__ == '__main__':
     app.run()

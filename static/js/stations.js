@@ -23,6 +23,7 @@ function getRequest(url, callback) {
 }
 
 
+// Takes all of the stations and adds markers to the map
 function processStations(stations) {
   stations = JSON.parse(stations);
   for (var i = 0; i < stations.result.length; i++) {

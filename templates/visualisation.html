@@ -1,10 +1,9 @@
 <html>
   <head>
-    <title>HtCtW - Stations</title>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <title>Station {{ station_id }}</title>
+    <link rel="stylesheet" href="/static/css/visualisation.css">
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/static/css/stations.css" />
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="/static/js/jquery.js" charset="UTF-8"></script>
     <script type="text/javascript" src="/static/js/bootstrap.min.js" charset="UTF-8"></script>
   </head>
@@ -24,11 +23,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li><a href="/documentation">Documentation</a></li>
+            <li><a href="/visualisation/{{ station_id }}">Station {{ station_id }}</a></li>
           </ul>
         </div>
       </div>
     </nav>
-    <div id="mapid"></div>
+    <script>stationId = {{ station_id|tojson|safe }}</script>
+    <script src='/static/js/visualisation.js'></script>
   </body>
-  <script src='/static/js/stations.js'></script>
 </html>
