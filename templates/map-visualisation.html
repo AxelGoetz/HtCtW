@@ -1,9 +1,10 @@
 <html>
   <head>
-    <title>Station {{ station_id }}</title>
-    <link rel="stylesheet" href="/static/css/visualisation.css">
+    <title>HtCtW - Stations</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="/static/css/map-visualisation.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <script type="text/javascript" src="/static/js/jquery.js" charset="UTF-8"></script>
     <script type="text/javascript" src="/static/js/bootstrap.min.js" charset="UTF-8"></script>
   </head>
@@ -24,32 +25,24 @@
           <ul class="nav navbar-nav">
             <li><a href="/documentation">Documentation</a></li>
             <li class="dropdown">
-              <a href="/visualisation" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Visualisation <span class="caret"></span></a>
+              <a href="/visualisation" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-expanded="false">Visualisation <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/visualisation#passFrequency">Pass frequency</a></li>
                 <li><a href="/visualisation#speedAnalysis">Speed analysis</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="/visualisation/{{ station_id }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Station {{ station_id }} <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#facts">Facts</a></li>
-                <li><a href="#histogram">Histogram</a></li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <div id="facts">
-      <h1>Facts</h1>
-      <div class="panel panel-default">
-        <div class="panel-body" id='listFacts'>
-        </div>
-      </div>
+    <div id="passFrequency">
+      <h1>Pass Frequency</h1>
+      <div id="map1"></div>
     </div>
-    <div id="histogram"></div>
-    <script>stationId = {{ station_id|tojson|safe }}</script>
-    <script src='/static/js/visualisation.js'></script>
+    <div id="speedAnalysis">
+      <h1>Speed Analysis</h1>
+      <div id="map2"></div>
+    </div>
+    <script src='/static/js/map-visualisation.js'></script>
   </body>
 </html>

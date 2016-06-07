@@ -106,10 +106,20 @@ def getRecordingsForStation(station_id):
     return jsonify(result=map(extract_dict, records))
 
 
+@app.route('/visualisation', methods=['GET'])
+def vis():
+    return render_template('map-visualisation.html')
+
+
 @app.route('/visualisation/<int:station_id>', methods=['GET'])
 def visualisation(station_id):
     return render_template(
         'visualisation.html', station_id=station_id)
+
+
+@app.route('/documentation', methods=['GET'])
+def documentation():
+    return render_template('documentation.html')
 
 if __name__ == '__main__':
     app.run()
