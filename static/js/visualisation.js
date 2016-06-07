@@ -6,6 +6,9 @@
 
 var records = [];
 
+// Getting data and extracting it
+// --------------------------------------------------
+
 function getRequest(url, callback) {
   var xmlHttp = new XMLHttpRequest();
   xmlHttp.onreadystatechange = function () {
@@ -39,6 +42,28 @@ function processRecords(recordsString) {
 
   // TODO: Call draw function
 }
+
+// D3 drawing
+// --------------------------------------------------
+
+// Get the bounds of the svg and the g element
+// in the svg in order to allow for margins
+function getBounds() {
+  var body = d3.select('body');
+  var bounds = body.node().getBoundingClientRect();
+
+  var bound = {height: bounds.height, width: bounds.width, margin:
+    {top: 50, right: 30, bottom: 30, left: 100}};
+
+  bound.height -= 100; // because of header
+  bound.width -= (bound.margin.left + bound.margin.right);
+  bound.height -= (bound.margin.top + bound.margin.bottom);
+
+  return bound;
+}
+
+// Main
+// --------------------------------------------------
 
 function main() {
   getRequest('/stations/' + stationId, processRecords);
