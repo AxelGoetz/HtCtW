@@ -113,7 +113,7 @@ function drawSpeedMap() {
     }).addTo(map);
     var id = stations[i].id;
     circle.bindPopup("<p style='color:black'>The average speed is: <b>" + speed +
-      "</b>. Click <a href='/visualisation/" + id + "'>here</a> for more data on sensor " + id + "</p>");
+      " km/h</b>. Click <a href='/visualisation/" + id + "'>here</a> for more data on sensor " + id + "</p>");
   }
 }
 
