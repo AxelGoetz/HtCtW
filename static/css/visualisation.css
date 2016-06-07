@@ -11,7 +11,7 @@ body {
 }
 
 .bar rect {
-  fill: steelblue;
+  fill: #4e5d6c;
   shape-rendering: crispEdges;
 }
 
@@ -21,6 +21,18 @@ body {
 
 .axis path, .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #fff;
   shape-rendering: crispEdges;
+}
+
+#frequencyMap {
+  height: 60%;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 2%;
+}
+
+#facts div {
+  margin-left: 2.5%;
+  width: 95%;
 }
