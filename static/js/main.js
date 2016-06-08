@@ -16,7 +16,7 @@ function processStations(stations) {
   var stationElem = $('#stations');
   for (var i = 0; i < stations.length; i++) {
     var id = stations[i].id;
-    var newElem = '<li><a href="/visualisation/' + id + '">Station ' + id + '</a></li>';
+    var newElem = '<li><a href="/visualisation/' + id + '">Bike Alert ' + id + '</a></li>';
     stationElem.append(newElem);
   }
 }

@@ -17,7 +17,7 @@ function processStation(stations) {
   for (var i = 0; i < stations.result.length; i++) {
     var marker = L.marker([stations.result[i].latitude, stations.result[i].longitude]).addTo(myMap);
     var id = stations.result[i].id;
-    marker.bindPopup("<a href='/visualisation/" + id + "'> Data for sensor " + id + "</a>");
+    marker.bindPopup("<a href='/visualisation/" + id + "'> Data for Bike Alert " + id + "</a>");
   }
 }
 

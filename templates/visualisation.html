@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Station {{ station_id }}{% endblock %}
+{% block title %}Bike Alert {{ station_id }}{% endblock %}
 {% block head %}
   {{ super() }}
   <link rel="stylesheet" href="/static/css/leaflet.css" />
@@ -7,7 +7,7 @@
   <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 {% endblock %}
 {% block body %}
-  <h2>Station {{station_id}}</h2>
+  <h2>Bike Alert {{station_id}}</h2>
   <div id="facts">
     <h3>Facts</h3>
     <div class="panel panel-default">
