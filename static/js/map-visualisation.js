@@ -6,18 +6,7 @@ var recordings = [];
 
 var requestsDone = 0;
 
-function getRequest(url, callback) {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function () {
-    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-          callback(xmlHttp.responseText);
-  };
-
-  xmlHttp.open('GET', url, true); // true for asynchronous
-  xmlHttp.send(null);
-}
-
-function processStations(station) {
+function processStation(station) {
   stations = JSON.parse(station).result;
   requestsDone += 1;
   sortData();
@@ -46,7 +35,7 @@ function sortData() {
 }
 
 function collectData() {
-  getRequest('/stations', processStations);
+  getRequest('/stations', processStation);
   getRequest('/recordings', processRecordings);
 }
 
@@ -94,19 +83,17 @@ function getAverageSpeed(station) {
   for (var i = 0; i < station.recordings.length; i++) {
     totalSpeed += station.recordings[i].speed;
   }
-  var averageSpeed = Math.round(totalSpeed / station.recordings.length);
-
-  if (averageSpeed === 0 || isNaN(averageSpeed)) {
-    averageSpeed = 5;
-  }
-  return averageSpeed;
+  return Math.round(totalSpeed / station.recordings.length);
 }
 
 function drawSpeedMap() {
   var map = drawMap('map2');
   for (var i = 0; i < stations.length; i++) {
     var speed = getAverageSpeed(stations[i]);
-    var circle = L.circle([stations[i].latitude, stations[i].longitude], speed, {
+    var minArea = speed;
+    if (speed === 0){ minArea = 2; }
+    else if (isNaN(speed)) { minArea = 2; speed = 0; }
+    var circle = L.circle([stations[i].latitude, stations[i].longitude], minArea, {
       color: 'red',
       fillColor: '#f03',
       fillOpacity: 0.5

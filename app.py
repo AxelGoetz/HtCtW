@@ -63,7 +63,7 @@ def addRecording(request, station_id):
 
 @app.route('/')
 def root():
-    return render_template('stations.html')
+    return render_template('index.html')
 
 
 @app.route('/stations', methods=['GET', 'POST'])

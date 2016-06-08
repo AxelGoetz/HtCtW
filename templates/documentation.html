@@ -1,39 +1,10 @@
-<html>
-  <head>
-    <title>HtCtW - Documentation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/static/css/documentation.css" />
-    <script type="text/javascript" src="/static/js/jquery.js" charset="UTF-8"></script>
-    <script type="text/javascript" src="/static/js/bootstrap.min.js" charset="UTF-8"></script>
-  </head>
-  <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Bike Alert</a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="/documentation">Documentation</a></li>
-            <li class="dropdown">
-              <a href="/visualisation" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Visualisation <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="/visualisation#passFrequency">Pass frequency</a></li>
-                <li><a href="/visualisation#speedAnalysis">Speed analysis</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <h1>There is no documentation (yet)</h1>
-  </body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Documentation{% endblock %}
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="/static/css/documentation.css" />
+{% endblock %}
+{% block body %}
+  <h2>Documentation</h2>
+  <h3>There is no documentation (yet)</h3>
+{% endblock %}

@@ -9,18 +9,6 @@ var histogramRecords = [];
 
 // Getting data and extracting it
 // --------------------------------------------------
-
-function getRequest(url, callback) {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function () {
-    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-          callback(xmlHttp.responseText);
-  };
-
-  xmlHttp.open('GET', url, true); // true for asynchronous
-  xmlHttp.send(null);
-}
-
 // Gets a dictionary with the hour at key
 function getDictByHour(records) {
   orderedRecords = {};
@@ -74,7 +62,7 @@ function getBounds() {
 function addNewSVG(bounds, title) {
   var body = d3.select('#histogram');
 
-  body.append('h1').text(title);
+  body.append('h3').text(title);
   var svg = body.append('svg');
 
   svg

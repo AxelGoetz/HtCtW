@@ -11,20 +11,8 @@ L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
   accessToken: 'pk.eyJ1IjoiYXhlbGcxMjMiLCJhIjoiY2lwNGYxZG0yMDAwOHc1bTFndnNrZ3owbCJ9.W9E8FuzZPBNUE65SoP30KA'
 }).addTo(myMap);
 
-function getRequest(url, callback) {
-  var xmlHttp = new XMLHttpRequest();
-  xmlHttp.onreadystatechange = function () {
-    if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
-          callback(xmlHttp.responseText);
-  };
-
-  xmlHttp.open('GET', url, true); // true for asynchronous
-  xmlHttp.send(null);
-}
-
-
 // Takes all of the stations and adds markers to the map
-function processStations(stations) {
+function processStation(stations) {
   stations = JSON.parse(stations);
   for (var i = 0; i < stations.result.length; i++) {
     var marker = L.marker([stations.result[i].latitude, stations.result[i].longitude]).addTo(myMap);
@@ -33,4 +21,4 @@ function processStations(stations) {
   }
 }
 
-getRequest('/stations', processStations);
+getRequest('/stations', processStation);
