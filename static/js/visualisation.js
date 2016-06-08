@@ -139,7 +139,6 @@ function drawHistogram() {
 // Gets the amount of hours that the station has been installed
 function getAmountOfHours() {
   var firstDay = d3.min(records, function(d) { return d.datetime });
-  console.log(firstDay);
   var lastDay = new Date();
   return Math.round((lastDay-firstDay)/(1000*60*60));
 }
@@ -151,10 +150,11 @@ function drawFacts() {
     totalBikes += histogramRecords[i].amount;
   }
   var bikesPerHour = totalBikes / getAmountOfHours();
+  if (isNaN(bikesPerHour)) { bikesPerHour = 0; }
   var totalSpeed = 0;
   for (var i = 0; i < records.length; i++) { totalSpeed += records[i].speed; }
   var averageSpeed = totalSpeed / records.length;
-
+  if (isNaN(averageSpeed)) { averageSpeed = 0; }
   var temp = facts.append('p')
     .text('Total cyclists passed: ')
       .append('b')
